@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  border: 1px solid black;
+}
+.nav-items > ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.nav-items > ul > li {
+  display: flex;
+  margin: 10px;
+}
+
+.logo {
+  width: 75px;
+}
+.avtar {
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+}
+.search-container {
+  padding: 10px;
+}
