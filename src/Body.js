@@ -1,7 +1,7 @@
 import { IMG_URL_CDN, restaurantList } from "./utils/Constants";
 
-const RestaurantCard = ({ restaurant }) => {
-  const { name, avgRating, cloudinaryImageId } = restaurant;
+const RestaurantCard = ({ name, avgRating, cloudinaryImageId }) => {
+  //const { name, avgRating, cloudinaryImageId } = restaurant;
   return (
     <>
       <div className="restaurant-card">
@@ -18,13 +18,11 @@ const Body = () => {
       <div className="search-container">
         <input type="search" className="search-input" placeholder="search" />
         <button className="search-btn">Search</button>
-        {/* <RestaurantCard
+        <RestaurantCard
           name={restaurantList[0].data.name}
           avgRating={restaurantList[0].data.avgRating}
           cloudinaryImageId={restaurantList[0].data.cloudinaryImageId}
-        /> */}
-
-        <RestaurantCard restaurant={restaurantList[0].data} />
+        />
       </div>
     </>
   );
