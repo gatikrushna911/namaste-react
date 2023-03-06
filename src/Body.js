@@ -1,7 +1,6 @@
 import { IMG_URL_CDN, restaurantList } from "./utils/Constants";
 
 const RestaurantCard = ({ name, avgRating, cloudinaryImageId }) => {
-  //const { name, avgRating, cloudinaryImageId } = restaurant;
   return (
     <>
       <div className="restaurant-card">
@@ -18,7 +17,11 @@ const Body = () => {
       <div className="search-container">
         <input type="search" className="search-input" placeholder="search" />
         <button className="search-btn">Search</button>
-        <RestaurantCard {...restaurantList[0].data} />
+      </div>
+      <div className="restaurnat-list">
+        {restaurantList.map((restaurnat) => (
+          <RestaurantCard {...restaurnat.data} key={restaurnat.data.id} />
+        ))}
       </div>
     </>
   );
