@@ -1,13 +1,13 @@
 import { IMG_URL_CDN, restaurantList } from "./utils/Constants";
 
-const RestaurantCard = (props) => {
+const RestaurantCard = ({ restaurant }) => {
   // const { name, avgRating, cloudinaryImageId } = restaurant;
   return (
     <>
       <div className="restaurant-card">
-        <img src={IMG_URL_CDN + props.restaurant.cloudinaryImageId}></img>
-        <h1>{props.restaurant.name}</h1>
-        <h4>Ratings {props.restaurant.avgRating} stars</h4>
+        <img src={IMG_URL_CDN + restaurant.cloudinaryImageId}></img>
+        <h1>{restaurant.name}</h1>
+        <h4>Ratings {restaurant.avgRating} stars</h4>
       </div>
     </>
   );
