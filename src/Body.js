@@ -18,11 +18,7 @@ const Body = () => {
       <div className="search-container">
         <input type="search" className="search-input" placeholder="search" />
         <button className="search-btn">Search</button>
-        <RestaurantCard
-          name={restaurantList[0].data.name}
-          avgRating={restaurantList[0].data.avgRating}
-          cloudinaryImageId={restaurantList[0].data.cloudinaryImageId}
-        />
+        <RestaurantCard {...restaurantList[0].data} />
       </div>
     </>
   );
