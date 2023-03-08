@@ -1,27 +1,58 @@
-import { IMG_URL_CDN, restaurantList } from "./utils/Constants";
+import { useEffect, useState } from "react";
+import Empty from "./Empty";
+import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
+import { restaurantList, SWIGGY_PUBLIC_URL } from "./utils/Constants";
+import { filterData } from "./utils/Helper";
 
-const RestaurantCard = ({ name, avgRating, cloudinaryImageId }) => {
-  return (
-    <>
-      <div className="restaurant-card">
-        <img src={IMG_URL_CDN + cloudinaryImageId}></img>
-        <h1>{name}</h1>
-        <h4>Ratings {avgRating} stars</h4>
-      </div>
-    </>
-  );
-};
 const Body = () => {
-  return (
+  const [searchText, setSearchText] = useState("");
+
+  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+
+  useEffect(() => {
+    getResturants();
+  }, []);
+  async function getResturants() {
+    const data = await fetch(SWIGGY_PUBLIC_URL);
+    const json = await data.json();
+    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+  }
+  // console.log("render()");
+  // if (filteredRestaurants.length === 0) return <Empty />;
+
+  return allRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="search-container">
-        <input type="search" className="search-input" placeholder="search" />
-        <button className="search-btn">Search</button>
+        <input
+          type="search"
+          className="search-input"
+          placeholder="search"
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button
+          className="search-btn"
+          onClick={() => {
+            const data = filterData(searchText, allRestaurants);
+            // console.log(data);
+            setFilteredRestaurants(data);
+          }}
+        >
+          Search
+        </button>
       </div>
       <div className="restaurnat-list">
-        {restaurantList.map((restaurnat) => (
-          <RestaurantCard {...restaurnat.data} key={restaurnat.data.id} />
-        ))}
+        {filteredRestaurants.length === 0 ? (
+          <Empty />
+        ) : (
+          filteredRestaurants.map((restaurnat) => (
+            <RestaurantCard {...restaurnat.data} key={restaurnat.data.id} />
+          ))
+        )}
       </div>
     </>
   );

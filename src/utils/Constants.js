@@ -1853,3 +1853,5 @@ export const restaurantList = [
     subtype: "basic",
   },
 ];
+export const SWIGGY_PUBLIC_URL =
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.3532772&lng=85.8265977&page_type=DESKTOP_WEB_LISTING";
