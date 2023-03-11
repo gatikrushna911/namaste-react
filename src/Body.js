@@ -20,9 +20,6 @@ const Body = () => {
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
-  // console.log("render()");
-  // if (filteredRestaurants.length === 0) return <Empty />;
-
   return allRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -38,7 +35,6 @@ const Body = () => {
           className="search-btn"
           onClick={() => {
             const data = filterData(searchText, allRestaurants);
-            // console.log(data);
             setFilteredRestaurants(data);
           }}
         >
